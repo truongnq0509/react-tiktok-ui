@@ -14,6 +14,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    padding: 0 var(--default-layout-horizontal-spacer);
     width: var(--default-layout-width);
     justify-content: space-between;
 }
@@ -93,4 +94,27 @@
     &:active {
         background-color: rgba(22, 24, 35, 0.06);
     }
+}
+
+// Actions
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.action-btn {
+    color: #161823;
+    font-size: 2.2rem;
+    background-color: transparent;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.more-btn {
+    font-size: 2rem;
+    margin-left: 28px;
+    padding: 4px 8px;
+    cursor: pointer;
+    background-color: transparent;
 }

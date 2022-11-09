@@ -104,11 +104,29 @@
 }
 
 .action-btn {
+    display: flex;
     color: #161823;
     font-size: 2.2rem;
     background-color: transparent;
     padding: 4px 12px;
     cursor: pointer;
+    position: relative;
+
+    .number {
+        width: 24px;
+        height: 18px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--white);
+        background-color: var(--primary);
+        position: absolute;
+        right: 3px;
+        top: -3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 18px;
+    }
 }
 
 .more-btn {
@@ -117,4 +135,14 @@
     padding: 4px 8px;
     cursor: pointer;
     background-color: transparent;
+}
+
+// Avatar
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
+    cursor: pointer;
 }

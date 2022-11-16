@@ -56,55 +56,64 @@ function Search() {
 		setShowResult(false)
 	}
 
+	const handleChange = (e) => {
+		const searchValue = e.target.value
+		if (!searchValue.startsWith(' ')) {
+			setSearchValue(searchValue)
+		}
+	}
+
 	return (
-		<HeadlessTippy
-			interactive
-			visible={showResults && searchResult.length > 0}
-			render={attrs => (
-				<div className={cx('search-result')} tabIndex="-1" {...attrs}>
-					<PopperWrapper>
-						<h4 className={cx('search-title')}>
-							Accounts
-						</h4>
-						{searchResult.map(result => (
-							<AccountItem key={result.id} data={result} />
-						))}
-					</PopperWrapper>
-				</div>
-			)}
-			onClickOutside={handleHideResult}
-		>
-			<div className={cx('search')}>
-				<input
-					ref={inputRef}
-					value={searchValue}
-					placeholder='Seacrch accounts and videos'
-					spellCheck={false}
-					onChange={e => setSearchValue(e.target.value)}
-					onFocus={() => setShowResult(true)}
-				/>
-				{!!searchValue && !loading && (
-					<button
-						className={cx('clear')}
-						onClick={handleClear}
-					>
-						{/*Close*/}
-						<FontAwesomeIcon icon={faCircleXmark} />
-					</button>
+		<div>
+			<HeadlessTippy
+				interactive
+				visible={showResults && searchResult.length > 0}
+				render={attrs => (
+					<div className={cx('search-result')} tabIndex="-1" {...attrs}>
+						<PopperWrapper>
+							<h4 className={cx('search-title')}>
+								Accounts
+							</h4>
+							{searchResult.map(result => (
+								<AccountItem key={result.id} data={result} />
+							))}
+						</PopperWrapper>
+					</div>
 				)}
-				{/* Loading */}
-				{loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-
-
-				<button className={cx('search-btn')}>
-					{/* Search */}
-					<SearchIcon
-						width='2.4rem'
-						height='2.4rem'
+				onClickOutside={handleHideResult}
+			>
+				<div className={cx('search')}>
+					<input
+						ref={inputRef}
+						value={searchValue}
+						placeholder='Seacrch accounts and videos'
+						spellCheck={false}
+						onChange={handleChange}
+						onFocus={() => setShowResult(true)}
 					/>
-				</button>
-			</div>
-		</HeadlessTippy>
+					{!!searchValue && !loading && (
+						<button
+							className={cx('clear')}
+							onClick={handleClear}
+						>
+							{/*Close*/}
+							<FontAwesomeIcon icon={faCircleXmark} />
+						</button>
+					)}
+					{/* Loading */}
+					{loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+
+
+					<button className={cx('search-btn')} onMouseDown={e => e.preventDefault()}>
+						{/* Search */}
+						<SearchIcon
+							width='2.4rem'
+							height='2.4rem'
+						/>
+					</button>
+				</div>
+			</HeadlessTippy>
+		</div>
 	)
 }
 

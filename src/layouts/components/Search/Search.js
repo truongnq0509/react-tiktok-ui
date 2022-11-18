@@ -3,7 +3,7 @@ import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
-import * as searchService from '~/apiServices/searchServices'
+import * as searchService from '~/services/searchService'
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
@@ -21,11 +21,11 @@ function Search() {
 
 	const inputRef = useRef()
 
-	const debounced = useDebounce(searchValue, 500)
+	const debouncedValue = useDebounce(searchValue, 500)
 
 
 	useEffect(() => {
-		if (!debounced.trim()) {
+		if (!debouncedValue.trim()) {
 			setSearchResult([])
 			return;
 		}
@@ -35,7 +35,7 @@ function Search() {
 		const fetchApi = async () => {
 			setLoading(true)
 
-			const result = await searchService.search(debounced)
+			const result = await searchService.search(debouncedValue)
 			setSearchResult(result)
 
 			setLoading(false)
@@ -44,7 +44,7 @@ function Search() {
 		fetchApi()
 
 
-	}, [debounced])
+	}, [debouncedValue])
 
 	const handleClear = () => {
 		setSearchValue('')
